@@ -20,7 +20,7 @@ node {
 //   step([$class: 'JUnitResultArchiver', testResults: '**/build/test-results/*.xml'])
 
    stage ('create reports'){
-   sh './gradlew jacoco --daemon'
+   sh './gradlew jacocoTestReport --daemon'
 
    sh './gradlew jdepend --daemon'
 
