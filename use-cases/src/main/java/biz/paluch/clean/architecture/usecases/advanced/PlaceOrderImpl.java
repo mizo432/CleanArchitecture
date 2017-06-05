@@ -1,7 +1,5 @@
 package biz.paluch.clean.architecture.usecases.advanced;
 
-import java.util.List;
-
 import biz.paluch.clean.architecture.applicationmodel.NotFoundException;
 import biz.paluch.clean.architecture.applicationmodel.Order;
 import biz.paluch.clean.architecture.applicationmodel.OrderItem;
@@ -14,6 +12,8 @@ import biz.paluch.clean.architecture.contracts.usecases.PlaceOrderOutput;
 import biz.paluch.clean.architecture.contracts.usecases.PlaceOrderRequest;
 import biz.paluch.clean.architecture.usecases.simple.ValidateOrder;
 
+import java.util.List;
+
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 01.08.13 07:15
@@ -25,9 +25,6 @@ public class PlaceOrderImpl implements PlaceOrder {
 
     /**
      * Place order and return the OrderId.
-     * 
-     * @param request
-     * @param output
      */
     @Override
     public void placeOrder(PlaceOrderRequest request, PlaceOrderOutput output) throws NotFoundException {

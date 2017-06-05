@@ -1,16 +1,15 @@
 package biz.paluch.clean.architecture.frontend.jsf;
 
-import java.util.ArrayList;
-import java.util.List;
+import biz.paluch.clean.architecture.facade.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
-
-import biz.paluch.clean.architecture.facade.OrderService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -19,10 +18,10 @@ import biz.paluch.clean.architecture.facade.OrderService;
 @RequestScoped
 @Named("orderController")
 public class OrderController {
-    @EJB
+    @Autowired
     private OrderService orderService;
 
-    @Inject
+    @Autowired
     private OrderModel orderModel;
 
     public void addItem() {

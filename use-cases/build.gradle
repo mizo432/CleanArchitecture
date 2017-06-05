@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+archivesBaseName = 'use-cases'
+
+repositories {
+    maven {
+        url "${artifactRepoBase}/libs-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'}-local"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":commons")
+    compile project(":contracts")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: "${springBootVersion}"
+    compile group: 'org.slf4j', name : 'slf4j-api', version: "${slf4jVersion}"
+    testRuntime group: 'ch.qos.logback', name : 'logback-classic', version: "${logbackVersion}"
+    testRuntime project(":mybatis-repository")
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
+
+}
+
+bootRepackage {
+    enabled = false
+}

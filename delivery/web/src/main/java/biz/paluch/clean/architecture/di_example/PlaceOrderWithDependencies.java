@@ -1,11 +1,10 @@
 package biz.paluch.clean.architecture.di_example;
 
-import javax.inject.Inject;
-
 import biz.paluch.clean.architecture.contracts.repositories.ItemRepository;
 import biz.paluch.clean.architecture.contracts.repositories.OrderRepository;
 import biz.paluch.clean.architecture.contracts.repositories.UserRepository;
 import biz.paluch.clean.architecture.usecases.advanced.PlaceOrderImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * This Use-Case wrapper extends the {@link PlaceOrderImpl} use case class in order to use declarative dependency injection.
@@ -14,19 +13,19 @@ import biz.paluch.clean.architecture.usecases.advanced.PlaceOrderImpl;
  */
 public class PlaceOrderWithDependencies extends PlaceOrderImpl {
 
-    @Inject
+    @Autowired
     @Override
     public void setOrderRepository(OrderRepository orderRepository) {
         super.setOrderRepository(orderRepository);
     }
 
-    @Inject
+    @Autowired
     @Override
     public void setItemRepository(ItemRepository itemRepository) {
         super.setItemRepository(itemRepository);
     }
 
-    @Inject
+    @Autowired
     @Override
     public void setUserRepository(UserRepository userRepository) {
         super.setUserRepository(userRepository);

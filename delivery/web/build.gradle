@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+jar {
+    baseName = 'web'
+    version = '1.0-SNAPSHOT'
+    manifest {
+        attributes 'Main-Class': 'org.springframework.boot.loader.JarLauncher'
+        attributes "Start-Class": "biz.paluch.clean.architecture.CleanArchitectureApplication"
+    }
+}
+
+archivesBaseName = 'web'
+
+repositories {
+    maven {
+        url "${artifactRepoBase}/libs-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'}-local"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":application-model")
+    compile project(":mybatis-repository")
+    compile project(":use-cases")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+    compile group: 'org.slf4j', name : 'slf4j-api', version: "${slf4jVersion}"
+    testRuntime group: 'ch.qos.logback', name : 'logback-classic', version: "${logbackVersion}"
+}

@@ -1,16 +1,15 @@
 package biz.paluch.clean.architecture.frontend.jsf;
 
-import java.util.ArrayList;
-import java.util.List;
+import biz.paluch.clean.architecture.applicationmodel.Item;
+import biz.paluch.clean.architecture.facade.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import biz.paluch.clean.architecture.applicationmodel.Item;
-import biz.paluch.clean.architecture.facade.ItemService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -19,10 +18,10 @@ import biz.paluch.clean.architecture.facade.ItemService;
 @RequestScoped
 @Named("itemController")
 public class ItemController {
-    @EJB
+    @Autowired
     private ItemService itemService;
 
-    @Inject
+    @Autowired
     private ItemModel itemModel;
 
     public List<SelectItem> getItems() {

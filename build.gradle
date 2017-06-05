@@ -1,0 +1,136 @@
+apply plugin: 'base'
+
+allprojects {
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+        guavaVersion = '21.+'
+        mybatisBootVersion = '1.2+'
+        mybatisTypeHandlerVersion = '1.0.+'
+        assertJVersion = '3.6.2'
+        h2dbVersion = '1.4.195'
+        logbackVersion = '1.2.3'
+        slf4jVersion = '1.7.25'
+        junitVersion = "4.12"
+        guavaVersion = "22.0"
+    }
+
+}
+group = 'biz.paluch.clean.architecture'
+archivesBaseName = 'clean-architecture'
+version = '1.0-SNAPSHOT'
+
+subprojects {
+
+    group = 'biz.paluch.clean.architecture'
+    version = '1.0-SNAPSHOT'
+
+    buildscript {
+        ext {
+            encoding = 'UTF-8'
+            compatibility = 1.8
+            artifactRepoBase = 'http://venus-pj.org/artifactory'
+        }
+        repositories {
+            maven {
+                url "${artifactRepoBase}/libs-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'}-local"
+            }
+            mavenCentral()
+            jcenter()
+        }
+    }
+
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'jacoco'
+    apply plugin: 'jdepend'
+    apply plugin: "findbugs"
+
+    sourceCompatibility = compatibility
+    targetCompatibility = compatibility
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
+        testCompile group: 'junit', name: 'junit', version: "${junitVersion}"
+        compile group: 'com.google.code.findbugs', name: 'annotations', version: "3.0.1"
+    }
+
+    configurations {
+        deployerJars
+    }
+
+    task writeNewPom << {
+        pom {
+            project {
+                inceptionYear '2017'
+            }
+        }.writeTo("$buildDir/newpom.xml")
+    }
+    uploadArchives {
+        repositories.mavenDeployer {
+            configuration = configurations.deployerJars
+            repository(url: "${artifactRepoBase}/libs-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'}-local") {
+                authentication(userName: "deploy", password: "earthdawn")
+
+            }
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    task(jdepend, type: JDepend) {
+        classesDir = file('build/intermediates/classes/debug/')
+        reports {
+            xml.enabled false
+            text.enabled true
+        }
+    }
+    jacoco {
+        toolVersion = "0.7.5.+"
+    }
+
+    jacocoTestReport.dependsOn test
+    jacocoTestReport {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports after running tests."
+        additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+        reports {
+            xml.enabled false
+            csv.enabled false
+            html.destination "${buildDir}/reports/jacoco/html"
+        }
+        executionData = files('build/jacoco/test.exec')
+    }
+
+    findbugs {
+        ignoreFailures = true
+        toolVersion = "3.0.1"
+        sourceSets = [sourceSets.main]
+        reportsDir = file("$project.buildDir/reports/findbugs")
+        effort = "max"
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
+

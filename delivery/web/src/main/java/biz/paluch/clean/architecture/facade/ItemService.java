@@ -1,32 +1,31 @@
 package biz.paluch.clean.architecture.facade;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
 import biz.paluch.clean.architecture.applicationmodel.Item;
 import biz.paluch.clean.architecture.contracts.repositories.ItemRepository;
 import biz.paluch.clean.architecture.contracts.usecases.CreateOrUpdateItem;
 import biz.paluch.clean.architecture.contracts.usecases.ListItemsOutput;
 import biz.paluch.clean.architecture.usecases.advanced.ListItemsImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 02.08.13 12:45
  */
-@Stateless
+@Component
 public class ItemService {
 
-    @Inject
+    @Autowired
     private ItemRepository itemRepository;
 
-    @Inject
+    @Autowired
     private ListItemsImpl listItems;
 
-    @Inject
+    @Autowired
     private CreateOrUpdateItem createOrUpdateItem;
 
     /**

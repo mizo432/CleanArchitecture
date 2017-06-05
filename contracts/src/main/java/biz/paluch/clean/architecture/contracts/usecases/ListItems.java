@@ -11,15 +11,13 @@ public interface ListItems {
 
     /**
      * List all items and pass these to the {@link ListItemsOutput} output.
-     * 
-     * @param listItemsOutput
+     * @param listItemsOutput listItemsOutput
      */
     void listItems(ListItemsOutput listItemsOutput);
 
     /**
      * Setter to {@link ItemRepository} dependency.
-     * 
-     * @param itemRepository
+     * @param itemRepository itemRepository
      */
     void setItemRepository(ItemRepository itemRepository);
 }

@@ -12,9 +12,9 @@ public interface PlaceOrder {
 
     /**
      * Places an order.
-     * 
-     * @param request
-     * @param output
+     * @param request request
+     * @param output output
+     * @throws NotFoundException NotFoundException
      */
     void placeOrder(PlaceOrderRequest request, PlaceOrderOutput output) throws NotFoundException;
 }

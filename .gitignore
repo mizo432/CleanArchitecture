@@ -2,3 +2,12 @@
 target
 *.iml
 atlassian-ide-plugin.xml
+/delivery/build/
+/delivery/web/build/
+/application-model/build/
+/.gradle/
+/commons/build/
+/contracts/build/
+/external/mybatis-repository/build/
+/utils/build/
+/use-cases/build/

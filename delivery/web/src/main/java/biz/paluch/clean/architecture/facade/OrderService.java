@@ -1,10 +1,5 @@
 package biz.paluch.clean.architecture.facade;
 
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
 import biz.paluch.clean.architecture.applicationmodel.NotFoundException;
 import biz.paluch.clean.architecture.applicationmodel.Order;
 import biz.paluch.clean.architecture.contracts.repositories.ItemRepository;
@@ -15,30 +10,34 @@ import biz.paluch.clean.architecture.contracts.usecases.PlaceOrderRequest;
 import biz.paluch.clean.architecture.di_example.PlaceOrderWithDependencies;
 import biz.paluch.clean.architecture.usecases.simple.CreateOrUpdateUser;
 import biz.paluch.clean.architecture.usecases.simple.ListOrders;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 02.08.13 12:45
  */
-@Stateless
+@Component
 public class OrderService {
 
-    @Inject
+    @Autowired
     private OrderRepository orderRepository;
 
-    @Inject
+    @Autowired
     private UserRepository userRepository;
 
-    @Inject
+    @Autowired
     private ItemRepository itemRepository;
 
-    @Inject
+    @Autowired
     private CreateOrUpdateUser createOrUpdateUser;
 
-    @Inject
+    @Autowired
     private ListOrders listOrders;
 
-    @Inject
+    @Autowired
     private PlaceOrderWithDependencies placeOrder;
 
     public List<Order> listOrders() {

@@ -1,0 +1,10 @@
+include ':use-cases'
+include ':contracts'
+include ':commons'
+include ':application-model'
+//include ':web'
+include ':mybatis-repository'
+//project(':web').projectDir = file('./delivery/web')
+project(':mybatis-repository').projectDir = file('./external/mybatis-repository')
+include ':utils'
+

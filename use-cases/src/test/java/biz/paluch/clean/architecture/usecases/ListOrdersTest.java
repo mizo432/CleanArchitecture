@@ -1,36 +1,37 @@
 package biz.paluch.clean.architecture.usecases;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import biz.paluch.clean.architecture.applicationmodel.Order;
+import biz.paluch.clean.architecture.contracts.repositories.OrderRepository;
+import biz.paluch.clean.architecture.usecases.simple.ListOrders;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
-import biz.paluch.clean.architecture.usecases.simple.ListOrders;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import biz.paluch.clean.architecture.applicationmodel.Order;
-import biz.paluch.clean.architecture.contracts.repositories.OrderRepository;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 02.08.13 11:13
  */
+@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class ListOrdersTest {
 
-    private ListOrders sut = new ListOrders();
+    private ListOrders sut = null;
 
     @Mock
     private OrderRepository orderRepository;
 
     @Before
     public void before() throws Exception {
-        sut.setOrderRepository(orderRepository);
+        sut = new ListOrders(orderRepository);
 
     }
 

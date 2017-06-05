@@ -4,7 +4,7 @@ package biz.paluch.clean.architecture.applicationmodel;
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 01.08.13 07:24
  */
-public class OrderItem extends AbstractModel {
+public class OrderItem {
     private String orderItem;
 
     public OrderItem() {

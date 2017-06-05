@@ -1,18 +1,19 @@
 package biz.paluch.clean.architecture.applicationmodel;
 
-import java.util.ArrayList;
-import java.util.Date;
+import jp.or.venuspj.utils.Lists2;
+
+import java.time.LocalDate;
 import java.util.List;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 01.08.13 07:23
  */
-public class Order extends AbstractModel {
+public class Order {
     private String orderId;
-    private Date orderDate;
+    private LocalDate orderDate;
 
-    private List<OrderItem> items = new ArrayList<>();
+    private List<OrderItem> items = Lists2.newArrayList();;
     private User createdBy;
 
     public String getOrderId() {
@@ -23,11 +24,11 @@ public class Order extends AbstractModel {
         this.orderId = orderId;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 

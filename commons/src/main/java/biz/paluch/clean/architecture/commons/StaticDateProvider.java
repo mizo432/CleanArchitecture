@@ -1,6 +1,6 @@
 package biz.paluch.clean.architecture.commons;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -8,20 +8,20 @@ import java.util.Date;
  */
 public class StaticDateProvider extends DateProvider {
 
-    private Date currentDate;
+    private LocalDate currentDate;
 
-    public static void initialize(Date currentDate) {
+    public static void initialize(LocalDate currentDate) {
         StaticDateProvider instance = new StaticDateProvider();
         instance.setCurrentDate(currentDate);
         DateProvider.setDateProvider(instance);
     }
 
     @Override
-    public Date getCurrentDate() {
+    public LocalDate getCurrentDate() {
         return currentDate;
     }
 
-    public void setCurrentDate(Date currentDate) {
+    public void setCurrentDate(LocalDate currentDate) {
         this.currentDate = currentDate;
     }
 }

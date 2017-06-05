@@ -11,15 +11,13 @@ public interface CreateOrUpdateItem {
 
     /**
      * Creates a new or updates an existing item.
-     * 
-     * @param item
+     * @param item item
      */
     void createOrUpdateItem(String item);
 
     /**
      * Setter to {@link ItemRepository} dependency.
-     * 
-     * @param itemRepository
+     * @param itemRepository itemRepository
      */
     void setItemRepository(ItemRepository itemRepository);
 }
