@@ -12,6 +12,7 @@ node {
     sh './gradlew :application-model:build --daemon'
     sh './gradlew :commons:build --daemon'
     sh './gradlew :contracts:build --daemon'
+    sh './gradlew :mybatis-repository:build --daemon'
     sh './gradlew :use-cases:build --daemon'
    }
 
