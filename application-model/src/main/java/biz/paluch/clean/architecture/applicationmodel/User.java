@@ -14,11 +14,19 @@ public class User {
         this.userName = userName;
     }
 
+    /**
+     * @return
+     * @Deprecated use userName()
+     */
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String userName() {
+        return userName;
     }
 }
