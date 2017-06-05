@@ -7,6 +7,10 @@ package biz.paluch.clean.architecture.applicationmodel;
 public class Item {
     private String item;
 
+    public Item(String anItem) {
+        item = anItem;
+    }
+
     public String getItem() {
         return item;
     }

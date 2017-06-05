@@ -6,8 +6,6 @@ import biz.paluch.clean.architecture.contracts.repositories.UserRepository;
 import jp.or.venuspj.utils.Objects2;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public class MybatisUserRepository implements UserRepository {
     UserMapper userMapper;
@@ -20,9 +18,9 @@ public class MybatisUserRepository implements UserRepository {
     @Override
     public User find(String anUserName) {
         User user = userMapper.find(anUserName);
-        return Optional.ofNullable(user).orElseThrow(() -> {
-            throw new NotFoundException("user Not Found. userName:" + anUserName);
-        });
+        if (Objects2.nonNull(user))
+            return user;
+        throw new NotFoundException("user Not Found. userName:" + anUserName);
     }
 
     @Override
