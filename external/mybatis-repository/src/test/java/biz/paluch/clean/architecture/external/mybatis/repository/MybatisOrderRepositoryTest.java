@@ -112,12 +112,12 @@ public class MybatisOrderRepositoryTest {
 
         Order result = mybatisOrderRepository.find(order.getOrderId());
 
-        assertThat(result.getCreatedBy().getUserName())
-                .isEqualTo(order.getCreatedBy().getUserName());
-        assertThat(result.getOrderId())
-                .isEqualTo(order.getOrderId());
-        assertThat(result.getItems().size())
-                .isEqualTo(order.getItems().size());
+        assertThat(result.createdBy().getUserName())
+                .isEqualTo(order.createdBy().getUserName());
+        assertThat(result.orderId())
+                .isEqualTo(order.orderId());
+        assertThat(result.items().size())
+                .isEqualTo(order.items().size());
     }
 
     @Test
