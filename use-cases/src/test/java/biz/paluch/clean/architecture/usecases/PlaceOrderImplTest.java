@@ -99,9 +99,9 @@ public class PlaceOrderImplTest {
 
         Order theOrder = captor.getValue();
 
-        assertEquals(orderDate, theOrder.getOrderDate());
-        assertEquals(USER_NAME_MARK, theOrder.getCreatedBy().getUserName());
-        assertEquals(items.size(), theOrder.getItems().size());
+        assertEquals(orderDate, theOrder.orderDate());
+        assertEquals(USER_NAME_MARK, theOrder.createdBy().userName());
+        assertEquals(items.size(), theOrder.items().size());
 
         verify(orderOutput).onResponse("mark-42");
 
@@ -116,9 +116,9 @@ public class PlaceOrderImplTest {
     }
 
     private void mockItemRepository() {
-        when(itemRepository.find(ITEM_NAME_SCISSORS)).thenReturn(new Item());
-        when(itemRepository.find(ITEM_NAME_PAPER)).thenReturn(new Item());
-        when(itemRepository.find(ITEM_NAME_GLUE)).thenReturn(new Item());
+        when(itemRepository.find(ITEM_NAME_SCISSORS)).thenReturn(new Item(null));
+        when(itemRepository.find(ITEM_NAME_PAPER)).thenReturn(new Item(null));
+        when(itemRepository.find(ITEM_NAME_GLUE)).thenReturn(new Item(null));
     }
 
     @Test(expected = NotFoundException.class)

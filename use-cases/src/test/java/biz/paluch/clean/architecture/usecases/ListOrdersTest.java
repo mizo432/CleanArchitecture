@@ -3,6 +3,7 @@ package biz.paluch.clean.architecture.usecases;
 import biz.paluch.clean.architecture.applicationmodel.Order;
 import biz.paluch.clean.architecture.contracts.repositories.OrderRepository;
 import biz.paluch.clean.architecture.usecases.simple.ListOrders;
+import jp.or.venuspj.utils.Lists2;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -37,8 +38,7 @@ public class ListOrdersTest {
 
     @Test
     public void testListOrders() throws Exception {
-        when(orderRepository.findOrders()).thenReturn(Arrays.asList(new Order()));
-
+        when(orderRepository.findOrders()).thenReturn(Arrays.asList(new Order(null, null, Lists2.newArrayList(), null)));
         List<Order> result = sut.listOrders();
         assertEquals(1, result.size());
 
