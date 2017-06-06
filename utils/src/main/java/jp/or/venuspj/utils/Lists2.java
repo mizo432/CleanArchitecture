@@ -9,4 +9,11 @@ public final class Lists2 {
         return new ArrayList<>();
     }
 
+    public static <T> List<T> newArrayList(T... args) {
+        List<T> result = new ArrayList<>();
+        for (T arg : args) {
+            result.add(arg);
+        }
+        return result;
+    }
 }

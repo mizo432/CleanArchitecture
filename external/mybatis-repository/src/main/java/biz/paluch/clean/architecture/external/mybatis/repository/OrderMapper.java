@@ -13,4 +13,6 @@ public interface OrderMapper {
     int getNextOrderId();
 
     List<Order> findAll();
+
+    Order findOne(String anOrderId);
 }

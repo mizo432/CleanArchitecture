@@ -1,8 +1,8 @@
 package biz.paluch.clean.architecture.contracts.repositories;
 
-import java.util.List;
-
 import biz.paluch.clean.architecture.applicationmodel.Order;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -14,4 +14,6 @@ public interface OrderRepository {
     void persist(Order order);
 
     List<Order> findOrders();
+
+    Order find(String orderId);
 }
