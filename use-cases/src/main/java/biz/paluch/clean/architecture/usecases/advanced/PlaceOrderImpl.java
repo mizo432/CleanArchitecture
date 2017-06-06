@@ -11,6 +11,7 @@ import biz.paluch.clean.architecture.contracts.usecases.PlaceOrder;
 import biz.paluch.clean.architecture.contracts.usecases.PlaceOrderOutput;
 import biz.paluch.clean.architecture.contracts.usecases.PlaceOrderRequest;
 import biz.paluch.clean.architecture.usecases.simple.ValidateOrder;
+import jp.or.venuspj.utils.Lists2;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class PlaceOrderImpl implements PlaceOrder {
 
         storeOrder(order);
 
-        output.onResponse(order.getOrderId());
+        output.onResponse(order.orderId());
     }
 
     private String createOrderId(String userName) {
@@ -46,15 +47,15 @@ public class PlaceOrderImpl implements PlaceOrder {
     }
 
     private Order constructOrder(String orderId, List<String> items, String userName) {
-        Order order = new Order();
-        order.setOrderDate(DateProvider.get());
-        order.setOrderId(orderId);
-        order.setCreatedBy(userRepository.find(userName));
+        Order order = new Order(orderId,
+                DateProvider.get(),
+                Lists2.newArrayList(),
+                userRepository.find(userName));
 
         for (String item : items) {
             OrderItem orderItem = new OrderItem();
             orderItem.setOrderItem(item);
-            order.getItems().add(orderItem);
+            order.items().add(orderItem);
         }
 
         return order;

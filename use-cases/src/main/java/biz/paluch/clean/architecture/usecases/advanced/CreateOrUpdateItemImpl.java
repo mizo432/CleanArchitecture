@@ -21,8 +21,7 @@ public class CreateOrUpdateItemImpl implements CreateOrUpdateItem {
 
         Item theItem = itemRepository.find(item);
         if (theItem == null) {
-            theItem = new Item();
-            theItem.setItem(item);
+            theItem = new Item(item);
             itemRepository.persist(theItem);
         }
     }
