@@ -16,7 +16,7 @@ public class User {
 
     /**
      * @return
-     * @Deprecated use userName()
+     * @deprecated use userName()
      */
     public String getUserName() {
         return userName;
