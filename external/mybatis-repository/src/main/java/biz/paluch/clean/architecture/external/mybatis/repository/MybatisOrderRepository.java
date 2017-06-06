@@ -19,6 +19,7 @@ public class MybatisOrderRepository implements OrderRepository {
     @Autowired
     public MybatisOrderRepository(OrderMapper anOrderMapper, OrderItemMapper anOrderItemMapper) {
         orderMapper = anOrderMapper;
+        orderItemMapper = anOrderItemMapper;
 
     }
 

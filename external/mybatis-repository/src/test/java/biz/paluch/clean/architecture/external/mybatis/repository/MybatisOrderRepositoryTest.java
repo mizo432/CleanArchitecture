@@ -20,48 +20,9 @@ public class MybatisOrderRepositoryTest {
     public void before() throws Exception {
         UserMapper userMapper = createUserMapper();
         mybatisUserRepository = new MybatisUserRepository(userMapper);
-        OrderMapper orderMapper = createOrderMapper();
-        OrderItemMapper orderItemMapper = createOrderItemMapper();
+        OrderMapper orderMapper = OrderMapperMock.defaultMock();
+        OrderItemMapper orderItemMapper = OrderItemMapperMock.defaultMock();
         mybatisOrderRepository = new MybatisOrderRepository(orderMapper, orderItemMapper);
-    }
-
-    private OrderItemMapper createOrderItemMapper() {
-        return new OrderItemMapper() {
-
-            @Override
-            public void insert(String orderId, OrderItem orderItem) {
-
-            }
-
-            @Override
-            public List<OrderItem> findByOrderId(String anOrderId) {
-                return Lists2.newArrayList();
-            }
-        };
-    }
-
-    private OrderMapper createOrderMapper() {
-        return new OrderMapper() {
-            @Override
-            public void insert(Order anOrder) {
-
-            }
-
-            @Override
-            public int getNextOrderId() {
-                return 1;
-            }
-
-            @Override
-            public List<Order> findAll() {
-                return null;
-            }
-
-            @Override
-            public Order findOne(String anOrderId) {
-                return null;
-            }
-        };
     }
 
     private UserMapper createUserMapper() {
@@ -122,9 +83,6 @@ public class MybatisOrderRepositoryTest {
 
     @Test
     public void testFindOrders() throws Exception {
-        Order order = mockOrder();
-        createOrder(order);
-
         List<Order> result = mybatisOrderRepository.findOrders();
         assertThat(result.size())
                 .isEqualTo(1);
